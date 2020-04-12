@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-trans="pTitle">Meme Gen</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="onInit()">
+    <div class="screen" onclick="toggleMenu()"></div>
+    <header>
+        <nav class="flex space-between align-center container">
+            <logo class="logo"><span>⚙️</span>Meme<span class="other-half">gen</span></logo>
+            <ul class="nav-bar flex">
+                <li class="gallery-head active"><a data-trans="navGallery" onclick="goToGallery()">Gallery</a></li>
+                <li class="meme-head"><a data-trans="navMemes" onclick="onLoadMeme()">Memes</a></li>
+                <li class="about-head"><a data-trans="navAbout" href='#about' onclick="openAbout()">About</a></li>
+            </ul>
+            <span class="menu" onclick="toggleMenu()">☰</span>
+        </nav>
+    </header>
+    <section class="canvas-container flex container hidden">
+        <form class="canvas-pref flex col align-center">
+            <input id="textOnMeme" type="text" placeholder="X" onkeyup="onChangeText(value)">
+            <section class="options flex">
+                <!-- <span class="arrow btn" onclick="onMoveUp()">up</span>
+                <span class="arrow btn" onclick="onMoveDown()">down</span> -->
+                <span class="switch btn" onclick="onChangeFocus()"><img
+                        src="./img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png"></span>
+                <span class="add btn" onclick="onAddLine()"><img src="./img/ICONS/add.png"></span>
+                <span class="del btn" onclick="onDelLine()"><img src="./img/ICONS/trash.png"></span>
+            </section>
+            <section class="edits flex">
+                <span class="text-plus btn" onclick="onTextInc()"><img
+                        src="./img/ICONS/increase font - icon.png"></span>
+                <span class="text-minus btn" onclick="onTextDec()"><img
+                        src="./img/ICONS/decrease font - icon.png"></span>
+                <span class="align-left btn" onclick="onTextAlign('right')"><img
+                        src="./img/ICONS/align-to-left.png"></span>
+                <span class="align-center btn" onclick="onTextAlign('center')"><img
+                        src="./img/ICONS/center-text-alignment.png"></span>
+                <span class="align-right btn" onclick="onTextAlign('left')"><img
+                        src="./img/ICONS/align-to-right.png"></span>
+                <select onchange="onChangeFont(value)">
+                    <option value="Impact">Impact</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Aharon">Aharon</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="Verdana">Verdana</option>
+                </select>
+                <label class="fill btn"><img src="./img/ICONS/paint-board-and-brush.png"><input type="color" id="fill"
+                        name="fill" onchange="onFillColorChange(value)" class="hidden"></label>
+                <label class="stroke btn"><img src="./img/ICONS/text stroke.png"><input type="color" id="stroke"
+                        name="stroke" onchange="onStrokeColorChange(value)" class="hidden"></labek>
+            </section>
+            <section class="btns">
+                <button data-trans="save" type="button" onclick="onSaveCanvas()"">Save</button>
+                <button><a  data-trans=" download" onclick="downloadCanvas(this)" download="">Download</a></button>
+            </section>
+        </form>
+        <div class="canvas-cont">
+            <canvas ontouchEnd="toggleFocus(false)" ontouchStart="toggleFocus(true)" ontouchMove="onChangePos(event)"
+                onmouseUp="toggleFocus(false)" onmouseDown="toggleFocus(true)" onmouseMove="onChangePos(event)">
+
+            </canvas>
+        </div>
+    </section>
+    <section class=" main">
+        <div class="search container flex">
+            <div class="input-search"><span data-trans="search">Search:</span>
+                <input data-trans="searchBar" list="keywords" type="search" placeholder="search a keyword"
+                    onkeyup="onFilterByKey(value)">
+                <datalist id="keywords"></datalist>
+            </div>
+            <div class="keywords flex align-center"></div>
+        </div>
+        <div class="gallery-imgs gallery grid">
+        </div>
+        <section class="memes gallery grid">
+        </section>
+    </section>
+    <section id="about" class="about  hidden">
+        <div class="container flex align-center col">
+            <img class="creator" src="./img/profile.png" alt="creator image">
+            <h2 data-trans="name">Gal Rondel</h2>
+            <p data-trans="prof">Full-stack developer at your service.</p>
+            <section class="social-media">
+                <span><img src="./img/ICONS/linkedin-logo.png" / class="linked"></span>
+                <span><img src="./img/ICONS/facebook-logo.png" / class="face"></span>
+                <span><img src="./img/ICONS/github-logo.png" / class="github"></span>
+            </section>
+        </div>
+    </section>
+    <footer>
+        <div class="flex space-between container">
+            <a href="#" data-trans="up" class="upup">Go Up</a>
+                <select id="lang" onchange="onSetLang(this.value)">
+                    <option value="en">English</option>
+                    <option value="he">עברית</option>
+                    <option value="ru" disabled>Pусский</option>
+                    <option value="ea" disabled>عربيه</option>
+                </select>
+        </div>
+    </footer>
+    <script src="js/utils.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/canvas-services.js"></script>
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/memes-controller.js"></script>
+    <script src="js/editmeme-controller.js"></script>
+</body>
+
+</html>
